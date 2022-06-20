@@ -4,6 +4,6 @@
   margin: 0 auto;
 };
 
-.container {
-  display: flex;
-};
+.wrapper_content {
+  background-color: burlywood;
+}
