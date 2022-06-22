@@ -1,9 +1,14 @@
 .wrapper {
   width: 1200px;
-  height: 100%;
+  height: auto;
   margin: 0 auto;
-};
+}
+
+.flex_content {
+  display: flex;
+}
 
 .wrapper_content {
   background-color: burlywood;
+  width: 100%;
 }

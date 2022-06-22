@@ -1,0 +1,24 @@
+.dialogs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.dialogs_item a{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.active {
+  color: white;
+}
+
+.dialog {
+  color: black;
+  
+}
+
+.message {
+  padding: 10px;
+}

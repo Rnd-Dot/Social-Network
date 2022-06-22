@@ -4,7 +4,16 @@
 
 .nav a {
   text-decoration: none;
+  padding: 10px;
+  display: flex;
+}
+
+.item {
   color: black;
+}
+
+.active {
+  color:aliceblue;
 }
 
 
