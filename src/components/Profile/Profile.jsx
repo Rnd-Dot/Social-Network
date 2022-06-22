@@ -1,14 +1,19 @@
-import s from"./Profile.module.css";
+import s from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = () => {
     return <div className={s.content}>
-    <div>
-        <img src="https://www.pixsy.com/wp-content/uploads/2021/04/ben-sweet-2LowviVHZ-E-unsplash-1.jpeg"></img>
-    </div>
-    <div>ava</div>
-    <MyPosts />
-    
+        <ProfileInfo />
+        <div>
+            <textarea></textarea>
+        </div>
+        <div>
+            <button>добавить</button>
+        </div>
+        
+        <MyPosts />
+
     </div>
 };
 
