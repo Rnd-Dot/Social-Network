@@ -1,18 +1,19 @@
+
 import s from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
+const Profile = (props) => {
+
     return <div className={s.content}>
         <ProfileInfo />
-        <div>
-            <textarea></textarea>
-        </div>
-        <div>
-            <button>добавить</button>
-        </div>
-        
-        <MyPosts />
+
+
+        <MyPosts 
+            posts={props.profilePage.posts}
+            updateNewPostText={props.updateNewPostText}
+            newPostText={props.profilePage.newPostText}
+            addPost={props.addPost} />
 
     </div>
 };
