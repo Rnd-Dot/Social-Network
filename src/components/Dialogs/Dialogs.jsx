@@ -36,7 +36,7 @@ const Dialogs = (props) => {
             <div className="messages">
                 {messageElements}
                 <div>
-                    <textarea onChange={onMessage} ref={newMessage} value={props.newMessage}/>
+                    <textarea onChange={onMessage} ref={newMessage} value={props.newMessages}/>
                 </div>
                 <div>
                     <button onClick={addMessage}>Написать</button>
