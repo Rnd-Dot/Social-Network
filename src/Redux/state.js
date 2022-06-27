@@ -1,3 +1,6 @@
+import dialogsReducer from "./reducer-dialogs";
+import profileReducer from "./reducer-profile";
+
 let store = {
     _state: {
         profilePage: {
@@ -20,14 +23,16 @@ let store = {
                 { id: 3, message: "WOw" }
             ],
     
-            newMessages: "",
+            
     
             dialogs: [
                 { id: 1, name: "Dima" },
                 { id: 2, name: "Vova" },
                 { id: 3, name: "Ivan" },
                 { id: 4, name: "Roma" }
-            ]
+            ],
+
+            newMessages: ""
         }
     },
 
@@ -37,40 +42,23 @@ let store = {
         return this._state;
     },
 
-    addMessage()  {
-        let newMessageText = {
-            id:4,
-            message: this._state.dialogsPage.newMessages
-        };
-        this._state.dialogsPage.messages.push(newMessageText);
-        this._state.dialogsPage.newMessages= "";
-        this._callSubscriber(this._state);
-    },
- 
-    updateNewMessageText(newText) {
-        this._state.dialogsPage.newMessages = newText;
-        this._callSubscriber(this._state);
-    },
-    
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            like_count: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText= "";
-        this._callSubscriber(this._state);
-    },
-
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._callSubscriber(this._state);
     },
 
     subscribe(observer) {
         this._callSubscriber = observer;
     }
-} 
+}
+
+export const addPostActionCreator = () => ({type: "ADD-POST"});
+
+export const updateNewPostTextActionCreator = (text) => ({type: "UPDATE-NEW-POST-TEXT", newText: text});
+
+export const addMessageActionCreator = () => ({type: "ADD-MESSAGE"});
+
+export const updateNewMessageTextActionCreator = (text) => ({type: "UPDATE-NEW-MESSAGE-TEXT", newText: text});
 
 export default store;
