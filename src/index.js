@@ -1,5 +1,5 @@
 import reportWebVitals from './reportWebVitals';
-import store from './state/state';
+import store from './Redux/state';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -12,10 +12,8 @@ let rerenderEntireTree = (state) => {
     <React.StrictMode>
       <App 
       state={state} 
-      addPost={store.addPost.bind(store)} 
-      updateNewPostText={store.updateNewPostText.bind(store)}
-      updateNewMessageText={store.updateNewMessageText.bind(store)}
-      addMessage={store.addMessage.bind(store)}/>
+      dispatch={store.dispatch.bind(store)} 
+      />
     </React.StrictMode>
   );
 }
