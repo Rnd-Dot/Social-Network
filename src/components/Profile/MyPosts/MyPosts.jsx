@@ -1,29 +1,28 @@
 import s from "./MyPosts.module.css";
 import Posts from "./Post/Posts.jsx";
 import React from 'react';
-import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../Redux/store";
 
 
 
 const MyPosts = (props) => {
-    let postItem = props.posts.map(p =>
+    let postItem = props.profilePage.posts.map(p =>
         <Posts message={p.message} like_count={p.like_count} />
     );
 
 
     let addPost = () => {
-        props.dispatch(addPostActionCreator());
+        props.addPost();
     }
 
     let onPost = (e) => {
         let text = e.target.value;
-        props.dispatch(updateNewPostTextActionCreator(text));
+        props.onPost(text);
     };
 
     return (
         <div>my post
             <div>
-                <textarea onChange={onPost} value={props.newPostText}/>
+                <textarea onChange={onPost} value={props.profilePage.newPostText}/>
             </div>
             <div>
                 <button onClick={addPost}>добавить</button>
