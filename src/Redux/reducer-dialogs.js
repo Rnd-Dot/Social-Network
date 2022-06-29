@@ -1,3 +1,5 @@
+import {cloneDeep} from "lodash"
+
 let initialState = {
     messages: [
         { id: 1, message: "Hi" },
@@ -19,20 +21,30 @@ let initialState = {
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "ADD-MESSAGE":
+        case "ADD-MESSAGE": {
             let newMessageText = {
                 id: 4,
                 message: state.newMessages
             };
-            state.messages.push(newMessageText);
-            state.newMessages = "";
-            return state;
-        case "UPDATE-NEW-MESSAGE-TEXT":
-            state.newMessages = action.newText;
-            return state;
+            let copyState = cloneDeep(state)
+            copyState.messages.push(newMessageText);
+            copyState.newMessages = "";
+            return copyState;
+        }
+        case "UPDATE-NEW-MESSAGE-TEXT": {
+            let copyState = cloneDeep(state)
+            copyState.newMessages = action.newText;
+            console.log(copyState);
+            return copyState;
+        }
         default:
             return state;
     }
 }
+
+export const addMessageActionCreator = () => ({type: "ADD-MESSAGE"});
+
+export const updateNewMessageTextActionCreator = (text) => ({type: "UPDATE-NEW-MESSAGE-TEXT", newText: text});
+
 
 export default dialogsReducer;
