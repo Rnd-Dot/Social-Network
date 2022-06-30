@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Find-users/UsersContainer";
 import Header from './components/Header/Header.jsx';
 import Music from './components/Musiс/Music';
 import Navbar from './components/Navbar/Navbar.jsx';
@@ -15,11 +16,9 @@ const App = (props) => {
           <Navbar />
           <div className='wrapper_content'>
             <Routes>
-              <Route path="/profile" element={<Profile
-                store={props.store}
-              />} />
-              <Route path="/dialogs/*" element={<DialogsContainer 
-                store={props.store}/>} />
+              <Route path="/profile" element={<Profile/>} />
+              <Route path="/dialogs/*" element={<DialogsContainer />} />
+              <Route path="/users/*" element={<UsersContainer />} />
               <Route path="/music" element={<Music />} />
               <Route path="/settings" element={<Settings />} />
             </Routes>
