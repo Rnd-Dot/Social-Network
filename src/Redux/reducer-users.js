@@ -4,10 +4,7 @@ const SET_USERS = "SET_USERS";
 
 let initialState = {
     users: [
-        { id: 1,followed: false, fullname: "Dmitry", location: {city: "Rostov" , contry: "Russia"} },
-        { id: 2,followed: true, fullname: "Vova", location: {city: "Moscow" , contry: "Russia"} },
-        { id: 3,followed: true, fullname: "Roma", location: {city: "Samara" , contry: "Russia"} },
-        { id: 4,followed: false, fullname: "Vika", location: {city: "Krasnodar" , contry: "Russia"} },
+     
     ]
 }
 
@@ -36,7 +33,7 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS:
             return { 
                 ...state,
-                users: [...state , ...action.users]
+                users: [...state.users , ...action.users]
             }
             
         default:
