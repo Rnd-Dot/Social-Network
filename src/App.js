@@ -5,7 +5,7 @@ import UsersContainer from "./components/Find-users/UsersContainer";
 import Header from './components/Header/Header.jsx';
 import Music from './components/Musiс/Music';
 import Navbar from './components/Navbar/Navbar.jsx';
-import Profile from './components/Profile/Profile.jsx';
+import ProfileContainer from "./components/Profile/ProfileContainer";
 import Settings from './components/Settings/Settings';
 
 const App = (props) => {
@@ -16,7 +16,8 @@ const App = (props) => {
           <Navbar />
           <div className='wrapper_content'>
             <Routes>
-              <Route path="/profile" element={<Profile/>} />
+              <Route path="/profile/:userId" element={<ProfileContainer/>} />
+              <Route path='/profile/*' element={<ProfileContainer />} />
               <Route path="/dialogs/*" element={<DialogsContainer />} />
               <Route path="/users/*" element={<UsersContainer />} />
               <Route path="/music" element={<Music />} />
