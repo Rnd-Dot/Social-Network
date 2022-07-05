@@ -8,7 +8,6 @@ import { useParams } from "react-router-dom";
 
 class ProfileAPIcontainer extends React.Component {
     componentDidMount() {
-        debugger;
         let userId = this.props.match.params.userId;
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
             this.props.setUserProfile(response.data)
