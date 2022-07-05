@@ -1,12 +1,14 @@
-import {combineReducers, legacy_createStore as createStore, legacy_createStore} from "redux"
+import {combineReducers, legacy_createStore} from "redux"
 import profileReducer from "./reducer-profile"
 import dialogsReducer from "./reducer-dialogs"
 import usersReducer from "./reducer-users";
+import authReducer from "./reducer-auth";
 
 let reducers = combineReducers({
     dialogsPage: dialogsReducer,
     profilePage: profileReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 });
 
 let store = legacy_createStore(reducers)
