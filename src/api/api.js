@@ -31,3 +31,10 @@ export const setUsersDataAPI = () => {
     .then(response => {
         return response.data})
 }
+
+
+export const profileUsersAPI = (userId) => {
+    return instance.get(`profile/` + userId)
+    .then(response => {
+        return response.data})
+}
