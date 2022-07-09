@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 import s from "./Dialogs.module.css";
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Message from "./Message/Message";
@@ -26,6 +27,7 @@ const Dialogs = (props) => {
         props.onMessage(text); 
 
     }
+
 
     return (
         <div className={s.dialogs}>
