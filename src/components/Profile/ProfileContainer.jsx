@@ -4,9 +4,10 @@ import React from "react";
 import { profileUsersThunk } from "../../Redux/reducer-profile"
 import { useParams } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 
-class ProfileAPIcontainer extends React.Component {
+class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         this.props.profileUsersThunk(userId)
@@ -19,13 +20,12 @@ class ProfileAPIcontainer extends React.Component {
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileAPIcontainer)
-
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth
 });
+
 
 
 function withRouter(Children) {
@@ -36,8 +36,8 @@ function withRouter(Children) {
     }
 }
 
-const ProfileContainer = connect(mapStateToProps, { profileUsersThunk })(withRouter(AuthRedirectComponent))
-
-
-
-export default ProfileContainer;
+export default compose(
+    connect(mapStateToProps, { profileUsersThunk }),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer);
