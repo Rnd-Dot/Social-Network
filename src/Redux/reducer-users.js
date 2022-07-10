@@ -1,4 +1,4 @@
-import { getUsersAPI, followAPI, unfollowAPI } from "../api/api";
+import { usersAPI } from "../api/api";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -83,7 +83,7 @@ export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_I
 export const getUsersThunk = (currentPage, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
-        getUsersAPI(currentPage, pageSize).then(data => {
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(setUsers(data.items))
             dispatch(toggleIsFetching(false))
         });
@@ -94,7 +94,7 @@ export const getUsersThunk = (currentPage, pageSize) => {
 export const getUsersThunkPage = (currentPage, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
-        getUsersAPI(currentPage, pageSize).then(data => {
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(setCurrentPage(currentPage))
             dispatch(setUsers(data.items))
             dispatch(toggleIsFetching(false))
@@ -105,7 +105,7 @@ export const getUsersThunkPage = (currentPage, pageSize) => {
 export const followThunk = (id) => {
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, id))
-        unfollowAPI(id)
+        usersAPI.unfollow(id)
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(unfollow(id))
@@ -118,7 +118,7 @@ export const followThunk = (id) => {
 export const unfollowThunk = (id) => {
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, id))
-        followAPI(id)
+        usersAPI.follow(id)
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(follow(id))

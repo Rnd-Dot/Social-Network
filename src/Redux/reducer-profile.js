@@ -1,4 +1,4 @@
-import { profileUsersAPI } from "../api/api";
+import { profileAPI } from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -50,7 +50,7 @@ export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
 export const profileUsersThunk = (userId) => {
     return (dispatch) => {
-        profileUsersAPI(userId).then(data => {
+        profileAPI.setUsersProfile(userId).then(data => {
             dispatch(setUserProfile(data))
         });
     }
