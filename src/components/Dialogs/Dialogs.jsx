@@ -1,11 +1,7 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
 import s from "./Dialogs.module.css";
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Message from "./Message/Message";
-
-
-
 
 const Dialogs = (props) => {
     let dialogElements = props.dialogsPage.dialogs.map(d => {
@@ -24,7 +20,7 @@ const Dialogs = (props) => {
 
     let onMessage = (e) => {
         let text = e.target.value;
-        props.onMessage(text); 
+        props.onMessage(text);
 
     }
 
@@ -37,7 +33,7 @@ const Dialogs = (props) => {
             <div className="messages">
                 {messageElements}
                 <div>
-                    <textarea onChange={onMessage}  value={props.dialogsPage.newMessages} placeholder="Введите сообщение"/>
+                    <textarea onChange={onMessage} value={props.dialogsPage.newMessages} placeholder="Введите сообщение" />
                 </div>
                 <div>
                     <button onClick={addMessage}>Написать</button>
