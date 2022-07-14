@@ -46,5 +46,5 @@ function withRouter(Children) {
 export default compose(
     connect(mapStateToProps, { profileUsersThunk, getStatus, updateStatus}),
     withRouter,
-    withAuthRedirect
+    //withAuthRedirect
 )(ProfileContainer);
