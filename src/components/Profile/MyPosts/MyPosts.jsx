@@ -5,7 +5,8 @@ import React from 'react';
 
 
 const MyPosts = (props) => {
-    let postItem = props.profilePage.posts.map(p =>
+    console.log("aaa")
+    let postItem = [...props.profilePage.posts].reverse().map(p =>
         <Posts message={p.message} like_count={p.like_count} />
     );
 
@@ -16,7 +17,7 @@ const MyPosts = (props) => {
 
     let onPost = (e) => {
         let text = e.target.value;
-        props.onPost(text);
+        props.updateNewPostText(text);
     };
 
     return (
