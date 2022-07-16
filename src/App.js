@@ -11,7 +11,9 @@ import Settings from './components/Settings/Settings';
 import React from "react";
 import { connect } from 'react-redux';
 import { initializeApp } from './Redux/reducer-app';
-import Preloader from './components/common/Preloader';
+import Preloader from './components/common/Preloader/Preloader';
+import { compose } from "redux";
+
 
 
 class App extends React.Component {
@@ -50,4 +52,6 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default connect(mapStateToProps, {initializeApp}) (App);
+export default compose (
+  connect(mapStateToProps, {initializeApp})) 
+  (App);

@@ -9,7 +9,7 @@ import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        let userId = this.props.match.params.userId;
+        let userId = this.props.id[0];
         if(!userId) {
             userId = this.props.autorizedUserId
             
@@ -35,16 +35,19 @@ let mapStateToProps = (state) => ({
 
 
 
-function withRouter(Children) {
-    return (props) => {
+const withRouter = WrappedComponent => props => {
+    const params = useParams();
 
-        const match = { params: useParams() };
-        return <Children {...props} match={match} />
-    }
+    return (
+        <WrappedComponent
+            {...props}
+            id={Object.values(params)}
+        />
+    );
 }
 
 export default compose(
     connect(mapStateToProps, { profileUsersThunk, getStatus, updateStatus}),
     withRouter,
-    //withAuthRedirect
+    withAuthRedirect
 )(ProfileContainer);
