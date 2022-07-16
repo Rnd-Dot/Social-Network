@@ -1,49 +1,20 @@
 import userPhoto from "../../assets/images/user.png"
 import s from "./Users.module.css"
 import { NavLink } from "react-router-dom";
+import Paginator from "../common/Paginator/Paginator";
+import User from "./User";
 
-const Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-
-    let pages = [];
-
-    for (let i = 1; i <= pagesCount; i += 1) {
-        pages.push(i);
-    }
-
-
+const Users = ({ currentPage, onPageChanged, totalUsersCount, pageSize, ...props }) => {
     return <div>
-        <div>
-            {pages.map(p => {
-                return <span onClick={() => { props.onPageChanged(p) }} className={props.currentPage === p && s.selectedPage}>{p}</span>
-            })}
-        </div>
+        < Paginator totalItemCount={totalUsersCount} pageSize={pageSize}
+            currentPage={currentPage} onPageChanged={onPageChanged} />
         {
-            props.users.map(u => <div key={u.id}>
-                <span>
-                    <div>
-                        <NavLink to={"/profile/" + u.id}>
-                            <img src={u.photos.small !== null ? u.photos.small : userPhoto} className={s.userPhoto} />
-                        </NavLink>
-                    </div>
-                    <div>
-                        {u.followed ?
-                            <button disabled={props.followingProgress.some(id => id === u.id)} onClick={() => {
-                                props.followThunk(u.id)
-                            }}>
-                                Unfollow</button>
-
-
-                            : <button  disabled={props.followingProgress.some(id => id === u.id)} onClick={() => {
-                                props.unfollowThunk(u.id)
-                            }}>
-                                Follow</button>}
-                    </div>
-                </span>
-                <span>
-                    <div>{u.name}</div>
-                </span>
-            </div>)
+            props.users.map(u => <User key={u.id}
+                user={u}
+                followingProgress={props.followingProgress}
+                followThunk={props.followThunk}
+                unfollowThunk={props.unfollowThunk}
+                portionSize = {10} />)
         }
     </div>
 }
