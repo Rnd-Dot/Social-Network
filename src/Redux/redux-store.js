@@ -14,7 +14,9 @@ let reducers = combineReducers({
     app: appReducer
 });
 
-let store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+const store = legacy_createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)))
+
 
 window.store = store;
 
