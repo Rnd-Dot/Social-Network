@@ -3,11 +3,6 @@
     width: 50px;
 }
 
-.selectedPage {
-    font-weight: bold;
-    cursor: pointer;
-}
-
 .loading {
     height: 100px;
     width: 100px;

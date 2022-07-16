@@ -1,4 +1,4 @@
-import Preloader from "../../common/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus/ProfileStatus"
 
 
