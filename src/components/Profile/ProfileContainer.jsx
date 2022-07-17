@@ -1,26 +1,51 @@
 import { connect } from "react-redux";
 import Profile from "./Profile";
 import React from "react";
-import { profileUsersThunk, getStatus, updateStatus } from "../../Redux/reducer-profile"
+import { profileUsersThunk, getStatus, updateStatus, savePhoto } from "../../Redux/reducer-profile"
 import { useParams } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 
+const withRouter = WrappedComponent => props => {
+    const params = useParams();
+
+    return (
+        <WrappedComponent
+            {...props}
+            id={Object.values(params)}
+        />
+    );
+}
+
+
 
 class ProfileContainer extends React.Component {
-    componentDidMount() {
+    refreshProfile() {
         let userId = this.props.id[0];
-        if(!userId) {
+        if (!userId) {
             userId = this.props.autorizedUserId
-            
+
         }
         this.props.profileUsersThunk(userId)
         this.props.getStatus(userId)
     }
 
+
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.id[0] !== prevProps.id[0]) {
+            this.refreshProfile()
+        }
+    }
+
     render() {
         return <>
-            <Profile {...this.props}/>
+            <Profile {...this.props}
+                isOwner={!this.props.id[0]}
+                savePhoto={this.props.savePhoto} />
         </>
     }
 }
@@ -35,19 +60,9 @@ let mapStateToProps = (state) => ({
 
 
 
-const withRouter = WrappedComponent => props => {
-    const params = useParams();
-
-    return (
-        <WrappedComponent
-            {...props}
-            id={Object.values(params)}
-        />
-    );
-}
 
 export default compose(
-    connect(mapStateToProps, { profileUsersThunk, getStatus, updateStatus}),
+    connect(mapStateToProps, { profileUsersThunk, getStatus, updateStatus, savePhoto }),
     withRouter,
     withAuthRedirect
 )(ProfileContainer);
