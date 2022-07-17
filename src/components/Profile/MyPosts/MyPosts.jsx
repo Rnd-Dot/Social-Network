@@ -5,9 +5,8 @@ import React from 'react';
 
 
 const MyPosts = (props) => {
-    console.log("aaa")
     let postItem = [...props.profilePage.posts].reverse().map(p =>
-        <Posts message={p.message} like_count={p.like_count} />
+        <Posts key={p.id} message={p.message} like_count={p.like_count} />
     );
 
 
