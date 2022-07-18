@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import HeaderComponent from "./components/Header/HeaderContainer";
-import Login from "./components/Login/Login";
 import Music from './components/Musiс/Music';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Settings from './components/Settings/Settings';
@@ -14,6 +13,7 @@ import { compose } from "redux";
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 const UsersContainer = React.lazy(() => import("./components/Find-users/UsersContainer"));
+const Login = React.lazy(() => import("./components/Login/Login"));
 
 class App extends React.Component {
   componentDidMount() {
