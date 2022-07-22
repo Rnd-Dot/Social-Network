@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { initializeApp } from './Redux/reducer-app';
 import Preloader from './components/common/Preloader/Preloader';
 import { compose } from "redux";
+import { Navigate } from "react-router-dom";
 
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
@@ -30,9 +31,11 @@ class App extends React.Component {
         <div className='flex_content'>
           <Navbar />
           <div className='wrapper_content'>
-            <Suspense fallback= {<Preloader />}>
+
+            <Suspense fallback={<Preloader />}>
               <Routes>
-                <Route path="/profile/:userID" element={<ProfileContainer />} />
+                <Route path="/" element={<Navigate to="/profile" />} />
+                <Route path="/profile/:userId" element={<ProfileContainer />} />
                 <Route path="/profile" element={<ProfileContainer />} />
                 <Route exact path="/dialogs" element={<DialogsContainer />} />
                 <Route path="/music" element={<Music />} />
