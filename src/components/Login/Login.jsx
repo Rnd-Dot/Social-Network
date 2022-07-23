@@ -13,7 +13,7 @@ const Login = (props) => {
         return (
             <div>
                 <h1>Login</h1>
-                <LoginForm login={props.login} />
+                <LoginForm login={props.login} captchaUrl={props.captchaUrl} />
                 {props.isError ? <span>{props.error}</span> :  null}
             </div>
         )
@@ -31,15 +31,18 @@ const LoginForm = (props) => {
         defaultValues: {
             email: "",
             password: "",
+            antiBot: "",
             rememberMe: false
         },
         mode: "onChange"
     })
     return (
         <form onSubmit={handleSubmit((data) => {
-            props.login(data.email, data.password, data.rememberMe)
+            props.login(data.email, data.password, data.rememberMe, data.antiBot)
             reset();
         })}>
+            {props.captchaUrl && <img src={props.captchaUrl}/>}
+            {props.captchaUrl && <input {...register("antiBot")} />}
             <label>Login</label>
             <input {...register("email", { required: true })} placeholder={"..."} />
 
@@ -54,6 +57,7 @@ const LoginForm = (props) => {
 }
 
 let mapStateToProps = (state) => ({
+    captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth,
     userId: state.auth.userId,
     isError: state.auth.isError,
