@@ -37,7 +37,7 @@ class App extends React.Component {
                 <Route path="/" element={<Navigate to="/profile" />} />
                 <Route path="/profile/:userId" element={<ProfileContainer />} />
                 <Route path="/profile" element={<ProfileContainer />} />
-                <Route exact path="/dialogs" element={<DialogsContainer />} />
+                <Route exact path="/dialogs/*" element={<DialogsContainer />} />
                 <Route path="/music" element={<Music />} />
                 <Route path="/users" element={<UsersContainer />} />
                 <Route path="/settings" element={<Settings />} />
