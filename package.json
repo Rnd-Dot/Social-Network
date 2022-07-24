@@ -27,8 +27,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "plugin:react-hooks/recommended"
+      "react-app/jest"
     ]
   },
   "browserslist": {
@@ -42,8 +41,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "eslint-plugin-react-hooks": "^4.6.0"
   }
 }
