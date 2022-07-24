@@ -2,14 +2,18 @@ import React from 'react';
 import s from "./Dialogs.module.css";
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Message from "./Message/Message";
+import { Button } from '@mui/material';
+import  SendIcon  from '@mui/icons-material/Send';
+
+
 
 const Dialogs = (props) => {
     let dialogElements = props.dialogsPage.dialogs.map(d => {
-        return <DialogsItem name={d.name} id={d.id} />
+        return <DialogsItem name={d.name} id={d.id} key={d.id}/>
     })
 
     let messageElements = props.dialogsPage.messages.map(m => {
-        return <Message message={m.message} />
+        return <Message message={m.message} key={m.id}/>
     })
 
 
@@ -36,7 +40,7 @@ const Dialogs = (props) => {
                     <textarea onChange={onMessage} value={props.dialogsPage.newMessages} placeholder="Введите сообщение" />
                 </div>
                 <div>
-                    <button onClick={addMessage}>Написать</button>
+                    <Button variant="contained" endIcon={ <SendIcon/> } onClick={addMessage}>Send</Button>
                 </div>
             </div>
 
