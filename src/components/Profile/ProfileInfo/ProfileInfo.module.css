@@ -1,0 +1,33 @@
+.user_photo {
+    margin-bottom: 10px;
+    background-color: #bfd7f1;
+    width: 250px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.user_photo img {
+    max-width: 200px;
+    padding: 25px;
+}
+
+.photo {
+    padding-bottom: 10px;
+}
+
+.block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info {
+    width: 820px;
+    height: 350px;
+}
+
+.info_user {
+    background-color: #bfd7f1;
+    padding: 5px 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}

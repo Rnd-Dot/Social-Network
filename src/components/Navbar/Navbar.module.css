@@ -1,8 +1,13 @@
-
 .nav a {
   text-decoration: none;
   padding: 10px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  margin: 20px 20px 20px 0;
 }
 
 .item {
@@ -10,11 +15,9 @@
 }
 
 .active {
-  color:aliceblue;
-}
-
-.container {
-  background-color: blue;
+  background-color: #bfd7f1;
+  color: black;
+  border-radius: 5px;
 }
 
 .titel {
