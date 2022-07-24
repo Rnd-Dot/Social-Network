@@ -20,14 +20,17 @@ const MyPosts = (props) => {
     };
 
     return (
-        <div>my post
-            <div>
-                <textarea onChange={onPost} value={props.profilePage.newPostText}/>
+        <div className={s.posts}>
+            <div className={s.label_posts}>
+                <h4>Posts</h4>
+                <div>
+                    <input className={s.field__input} onChange={onPost} value={props.profilePage.newPostText}/>
+                </div>
+                <div>
+                    <button className={s.btn} onClick={addPost}>добавить</button>
+                </div>
             </div>
-            <div>
-                <button onClick={addPost}>добавить</button>
-            </div>
-            <div>new post</div>
+            
             {postItem}
         </div>);
 
