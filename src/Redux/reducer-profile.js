@@ -8,10 +8,10 @@ const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
 
 let initialState = {
     posts: [
-        { id: 1, message: "Здарова", like_count: "5" },
-        { id: 2, message: "Ты кто", like_count: "20" },
-        { id: 3, message: "Получилось", like_count: "100000" },
-        { id: 4, message: "так", like_count: "9" }
+        { id: 1, message: "test 1", like_count: "5" },
+        { id: 2, message: "test 2", like_count: "20" },
+        { id: 3, message: "test 3", like_count: "10" },
+        { id: 4, message: "test 4", like_count: "9" }
     ],
 
     newPostText: "",
