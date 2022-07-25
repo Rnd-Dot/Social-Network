@@ -4,6 +4,7 @@ import userPhoto from "../../../assets/images/user.png"
 import React, { useState } from "react"
 import ProfileDataForm from './ProfileDataForm/ProfileDataForm';
 import s from "./ProfileInfo.module.css"
+import { Button } from "@mui/material";
 
 
 const ProfileInfo = (props) => {
@@ -23,7 +24,12 @@ const ProfileInfo = (props) => {
         <div className={s.block}>
             <div className={s.user_photo}>
                 <img className={s.photo} src={props.profile.photos.large || userPhoto} />
-                {props.isOwner && <div><input onChange={onMainPhoto} type="file" /></div>}
+                {props.isOwner && <div>
+                    <Button className={s.btn} variant="contained" component="label">
+                        Upload
+                        <input onChange={onMainPhoto} hidden accept="image/*" multiple type="file" />
+                    </Button>
+                    </div>}
             </div>
             <div className={s.info}>
                 <div className={s.info_user}>
@@ -39,8 +45,8 @@ const ProfileInfo = (props) => {
                     <h3>Social networks</h3>
                     {editMode ? <ProfileDataForm profile={props.profile} />
                         : <ProfileData profile={props.profile}
-                                        isOwner={props.isOwner}
-                                        toEditMode={() => { setEditMode(true) }} />}
+                            isOwner={props.isOwner}
+                            toEditMode={() => { setEditMode(true) }} />}
                 </div>
             </div>
         </div>
@@ -49,7 +55,7 @@ const ProfileInfo = (props) => {
 
 const ProfileData = ({ profile, isOwner, toEditMode }) => {
     return <>
-        {isOwner && <button onClick={toEditMode}>Edit</button>}
+        {isOwner && <Button size="small" onClick={toEditMode} variant="contained">Edit</Button>}
         <div>
             <b> Looking for a job : {profile.lookingForAJob ? "yes" : "no"}</b>
         </div>

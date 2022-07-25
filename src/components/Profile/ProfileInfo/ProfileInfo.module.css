@@ -31,3 +31,11 @@
     border-radius: 5px;
     margin-bottom: 20px;
 }
+
+.btn {
+    position: relative;
+    left: 31px;
+    bottom: 11px;
+    width: 187px;
+    height: 25px
+}
