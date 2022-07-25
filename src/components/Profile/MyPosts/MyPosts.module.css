@@ -16,7 +16,8 @@
   }
 
 .btn {
-    margin-bottom: 10px;
+    width: 130px;
+    height: 30px;
 }
 
 .posts {
@@ -33,4 +34,10 @@
     border-radius: 5px;
     margin-top: 76px;
     margin-bottom: 28px;
+}
+
+.my_posts {
+    background-color: #bfd7f1;
+    padding: 5px;
+    border-radius: 5px; 
 }

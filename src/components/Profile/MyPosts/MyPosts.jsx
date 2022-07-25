@@ -1,6 +1,8 @@
 import s from "./MyPosts.module.css";
 import Posts from "./Post/Posts.jsx";
 import React from 'react';
+import { Button } from "@mui/material";
+import  SendIcon  from '@mui/icons-material/Send';
 
 
 
@@ -24,14 +26,17 @@ const MyPosts = (props) => {
             <div className={s.label_posts}>
                 <h4>Posts</h4>
                 <div>
-                    <input className={s.field__input} onChange={onPost} value={props.profilePage.newPostText}/>
+                    <input className={s.field__input} onChange={onPost} value={props.profilePage.newPostText} />
                 </div>
                 <div>
-                    <button className={s.btn} onClick={addPost}>добавить</button>
+                    <Button  className={s.btn} onClick={addPost} variant="contained" endIcon={<SendIcon />}>
+                        Publish
+                    </Button>
                 </div>
             </div>
-            
-            {postItem}
+            <div className={s.my_posts}>
+                {postItem}
+            </div>
         </div>);
 
 };
