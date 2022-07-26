@@ -6,6 +6,7 @@ const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS_USERS = "SET_STATUS_USERS";
 const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
 
+
 let initialState = {
     posts: [
         { id: 1, message: "test 1", like_count: "5" },
@@ -88,6 +89,13 @@ export const savePhoto = (file) => async (dispatch) => {
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
+
+export const saveProfile = (profile) => async (dispatch) => {
+    let response = await profileAPI.saveProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch(setUserProfile(response.data.data))
     }
 }
 
