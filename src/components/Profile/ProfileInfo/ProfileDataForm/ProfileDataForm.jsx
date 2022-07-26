@@ -1,26 +1,52 @@
-
 import { useForm } from 'react-hook-form';
+import { connect } from 'react-redux';
+import { saveProfile } from '../../../../Redux/reducer-profile';
 
 
-const ProfileDataForm = () => {
+const ProfileDataForm = (props) => {
     const {
         register,
         handleSubmit
     } = useForm({
         defaultValues: {
-            
+          fullName: "",
+          lookingForAJob: false,
+          facebook: "",
+          website: "",
+          vk: "",
+          twitter: "",
+          instagram: "",
+          github: "", 
+          mainLink: ""
         },
         mode: "onChange"
     })
 
 
-    const onSubmit = data => console.log(data)
-
     return ( 
-        <form onSubmit={handleSubmit(onSubmit)}>
-            
+        <form onSubmit={handleSubmit(data => {
+            props.saveProfile(data)
+        })}>
+            <label>Fullname</label>
+            <input {...register("fullName", { required: true })} placeholder={"..."} />
+            <label>Looking for a job</label>
+            <input type="checkbox" {...register("lookingForAJob")}  />
+            <label>Facebook</label>
+            <input {...register("facebook", )} placeholder={"..."} />
+            <label>Website</label>
+            <input {...register("website", )} placeholder={"..."} />
+            <label>Vk</label>
+            <input {...register("vk", )} placeholder={"..."} />
+            <label>Twitter</label>
+            <input {...register("twitter", )} placeholder={"..."} />
+            <label>Instagram</label>
+            <input {...register("instagram", )} placeholder={"..."} />
+            <label>Github</label>
+            <input {...register("github", )} placeholder={"..."} />
+            <label>MainLink</label>
+            <input {...register("mainLink", )} placeholder={"..."} />
             <input type="submit" />
         </form>)
 
     }
-export default ProfileDataForm;
+export default connect(null, {saveProfile}) (ProfileDataForm);
