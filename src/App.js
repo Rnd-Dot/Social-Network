@@ -6,7 +6,7 @@ import Navbar from './components/Navbar/Navbar.jsx';
 import Settings from './components/Settings/Settings';
 import React, { Suspense } from "react";
 import { connect } from 'react-redux';
-import { initializeApp } from './Redux/reducer-app';
+import { initializeApp } from './Redux/reducer-app.ts';
 import Preloader from './components/common/Preloader/Preloader';
 import { compose } from "redux";
 import { Navigate } from "react-router-dom";

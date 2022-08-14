@@ -9,10 +9,10 @@ const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
 
 let initialState = {
     posts: [
-        { id: 1, message: "test 1", like_count: "5" },
-        { id: 2, message: "test 2", like_count: "20" },
-        { id: 3, message: "test 3", like_count: "10" },
-        { id: 4, message: "test 4", like_count: "9" }
+        { id: 1, message: "test 1", like_count: 5 },
+        { id: 2, message: "test 2", like_count: 20 },
+        { id: 3, message: "test 3", like_count: 10 },
+        { id: 4, message: "test 4", like_count: 9 }
     ],
 
     newPostText: "",
@@ -22,7 +22,9 @@ let initialState = {
     status: ""
 }
 
-const profileReducer = (state = initialState, action) => {
+export type InitialStateType = typeof initialState;
+
+const profileReducer = (state = initialState, action: any) : InitialStateType => {
     switch (action.type) {
         case ADD_POST:
             return {
@@ -56,43 +58,69 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPost = () => ({ type: ADD_POST });
+type addPostType = {
+    type: typeof ADD_POST
+}
 
-export const updateNewPostText = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text });
+export const addPost = (): addPostType => ({ type: ADD_POST });
 
-export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
+type updateNewPostTextType = {
+    type: typeof UPDATE_NEW_POST_TEXT
+    newText: string
+}
 
-export const setStatusUser = (status) => ({ type: SET_STATUS_USERS, status });
+export const updateNewPostText = (text: string): updateNewPostTextType => ({ type: UPDATE_NEW_POST_TEXT, newText: text });
 
-export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos });
+type setUserProfileType = {
+    type: typeof SET_USER_PROFILE
+    profile: any
+}
 
-export const profileUsersThunk = (userId) => async (dispatch) => {
+export const setUserProfile = (profile: any): setUserProfileType => ({ type: SET_USER_PROFILE, profile });
+
+type  setStatusUserType = {
+    type: typeof SET_STATUS_USERS
+    status: string
+}
+
+export const setStatusUser = (status: string): setStatusUserType => ({ type: SET_STATUS_USERS, status });
+
+type savePhotoSuccessType = {
+    type: typeof SAVE_PHOTO_SUCCESS
+    photos: any
+}
+
+export const savePhotoSuccess = (photos: any): savePhotoSuccessType => ({ type: SAVE_PHOTO_SUCCESS, photos });
+
+
+
+export const profileUsersThunk = (userId) => async (dispatch: any) => {
     let response = await profileAPI.setUsersProfile(userId)
     dispatch(setUserProfile(response.data))
 }
 
 
-export const getStatus = (userId) => async (dispatch) => {
+export const getStatus = (userId) => async (dispatch: any) => {
     let response = await profileAPI.getStatus(userId)
     dispatch(setStatusUser(response.data))
 }
 
 
-export const updateStatus = (status) => async (dispatch) => {
+export const updateStatus = (status) => async (dispatch: any) => {
     let response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0) {
         dispatch(setStatusUser(status))
     }
 }
 
-export const savePhoto = (file) => async (dispatch) => {
+export const savePhoto = (file) => async (dispatch: any) => {
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
 
-export const saveProfile = (profile) => async (dispatch) => {
+export const saveProfile = (profile) => async (dispatch: any) => {
     let response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
         dispatch(setUserProfile(response.data.data))

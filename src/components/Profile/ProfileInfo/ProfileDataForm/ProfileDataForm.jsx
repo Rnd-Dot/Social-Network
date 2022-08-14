@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
-import { saveProfile } from '../../../../Redux/reducer-profile';
+import { saveProfile } from '../../../../Redux/reducer-profile.ts';
 
 
 const ProfileDataForm = (props) => {

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { login } from "../../Redux/reducer-auth"
+import { login } from "../../Redux/reducer-auth.ts"
 import { connect } from "react-redux"
 import { Navigate } from "react-router-dom"
 
