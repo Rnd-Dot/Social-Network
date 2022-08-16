@@ -1,4 +1,5 @@
 import { profileAPI } from "../api/api";
+import { photosType, postType, profileType } from "../types/types";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -13,11 +14,11 @@ let initialState = {
         { id: 2, message: "test 2", like_count: 20 },
         { id: 3, message: "test 3", like_count: 10 },
         { id: 4, message: "test 4", like_count: 9 }
-    ],
+    ] as Array<postType>,
 
     newPostText: "",
 
-    profile: null,
+    profile: null as profileType | null,
 
     status: ""
 }
@@ -76,7 +77,7 @@ type setUserProfileType = {
     profile: any
 }
 
-export const setUserProfile = (profile: any): setUserProfileType => ({ type: SET_USER_PROFILE, profile });
+export const setUserProfile = (profile: profileType): setUserProfileType => ({ type: SET_USER_PROFILE, profile });
 
 type  setStatusUserType = {
     type: typeof SET_STATUS_USERS
@@ -90,37 +91,37 @@ type savePhotoSuccessType = {
     photos: any
 }
 
-export const savePhotoSuccess = (photos: any): savePhotoSuccessType => ({ type: SAVE_PHOTO_SUCCESS, photos });
+export const savePhotoSuccess = (photos: photosType): savePhotoSuccessType => ({ type: SAVE_PHOTO_SUCCESS, photos });
 
 
 
-export const profileUsersThunk = (userId) => async (dispatch: any) => {
+export const profileUsersThunk = (userId: number) => async (dispatch: any) => {
     let response = await profileAPI.setUsersProfile(userId)
     dispatch(setUserProfile(response.data))
 }
 
 
-export const getStatus = (userId) => async (dispatch: any) => {
+export const getStatus = (userId: number) => async (dispatch: any) => {
     let response = await profileAPI.getStatus(userId)
     dispatch(setStatusUser(response.data))
 }
 
 
-export const updateStatus = (status) => async (dispatch: any) => {
+export const updateStatus = (status: string) => async (dispatch: any) => {
     let response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0) {
         dispatch(setStatusUser(status))
     }
 }
 
-export const savePhoto = (file) => async (dispatch: any) => {
+export const savePhoto = (file: any) => async (dispatch: any) => {
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
 
-export const saveProfile = (profile) => async (dispatch: any) => {
+export const saveProfile = (profile: profileType) => async (dispatch: any) => {
     let response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
         dispatch(setUserProfile(response.data.data))
