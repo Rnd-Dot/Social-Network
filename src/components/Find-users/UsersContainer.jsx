@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import React from "react";
-import { getUsersThunkPage, unfollowThunk, getUsersThunk, followThunk } from "../../Redux/reducer-users"
+import { getUsersThunkPage, unfollowThunk, getUsersThunk, followThunk } from "../../Redux/reducer-users.ts"
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 
