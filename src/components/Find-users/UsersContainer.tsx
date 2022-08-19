@@ -1,12 +1,30 @@
 import { connect } from "react-redux"
 import React from "react";
+//@ts-ignore
 import { getUsersThunkPage, unfollowThunk, getUsersThunk, followThunk } from "../../Redux/reducer-users.ts"
-import Users from "./Users";
+//@ts-ignore
+import Users from "./Users.tsx";
 import Preloader from "../common/Preloader/Preloader";
+import { UserType } from "../../types/types";
 
 
+type Props = {
+    currentPage: number
+    pageSize: number
+    isFetching: boolean
+    totalUsersCount: number
+    users: Array<UserType>
+    followingProgress: Array<number>
 
-class UsersAPIcomponent extends React.Component {
+
+    followThunk: (id: number) => void
+    unfollowThunk: (id: number) => void
+    getUsersThunk: (currentPage: number, pageSize: number) => void
+    getUsersThunkPage: (pageNumber, pageSize: number) => void
+}
+
+
+class UsersAPIcomponent extends React.Component<Props>{
     componentDidMount() {
         this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
     }
