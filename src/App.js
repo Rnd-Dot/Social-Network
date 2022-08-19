@@ -13,7 +13,7 @@ import { Navigate } from "react-router-dom";
 
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
-const UsersContainer = React.lazy(() => import("./components/Find-users/UsersContainer"));
+const UsersContainer = React.lazy(() => import("./components/Find-users/UsersContainer.tsx"));
 const Login = React.lazy(() => import("./components/Login/Login"));
 
 class App extends React.Component {
