@@ -1,3 +1,4 @@
+//@ts-ignore
 import { getAuthUserData } from './reducer-auth.ts';
 
 
