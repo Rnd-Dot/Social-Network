@@ -1,7 +1,14 @@
-import { NavLink } from "react-router-dom";
-import s from "./Header.module.css";
+import { NavLink } from "react-router-dom"
+import s from "./Header.module.css"
+import React from "react"
 
-const Header = (props) => {
+type Props = {
+    isAuth: boolean
+    login: string
+    logout: any
+}
+
+const Header = (props : Props) => {
     return <header className={s.header}>
     <img src="https://1757140519.rsc.cdn77.org/static/v3/img/products/logo.png" alt=""></img>
     <div className={s.loginBlock}>
