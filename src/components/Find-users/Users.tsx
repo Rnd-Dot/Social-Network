@@ -1,4 +1,4 @@
-import User from "./User";
+import User from "./User.tsx";
 import React from "react";
 import { UserType } from "../../types/types";
 //@ts-ignore

@@ -8,20 +8,23 @@ import Preloader from "../common/Preloader/Preloader";
 import { UserType } from "../../types/types";
 
 
-type Props = {
+type MapStateToProps = {
     currentPage: number
     pageSize: number
     isFetching: boolean
     totalUsersCount: number
     users: Array<UserType>
     followingProgress: Array<number>
+}
 
-
+type MapDispatchToProps = {
     followThunk: (id: number) => void
     unfollowThunk: (id: number) => void
     getUsersThunk: (currentPage: number, pageSize: number) => void
-    getUsersThunkPage: (pageNumber, pageSize: number) => void
+    getUsersThunkPage: (pageNumber: number, pageSize: number) => void
 }
+
+type Props = MapStateToProps & MapDispatchToProps
 
 
 class UsersAPIcomponent extends React.Component<Props>{
