@@ -41,7 +41,7 @@ const LoginForm = (props) => {
             props.login(data.email, data.password, data.rememberMe, data.antiBot)
             reset();
         })}>
-            {props.captchaUrl && <img src={props.captchaUrl}/>}
+            {props.captchaUrl && <img src={props.captchaUrl} alt=""/>}
             {props.captchaUrl && <input {...register("antiBot")} />}
             <label>Login</label>
             <input {...register("email", { required: true })} placeholder={"..."} />

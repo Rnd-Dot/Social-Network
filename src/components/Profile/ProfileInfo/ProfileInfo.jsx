@@ -23,7 +23,7 @@ const ProfileInfo = (props) => {
     return (
         <div className={s.block}>
             <div className={s.user_photo}>
-                <img className={s.photo} src={props.profile.photos.large || userPhoto} />
+                <img className={s.photo} src={props.profile.photos.large || userPhoto} alt=""/>
                 {props.isOwner && <div>
                     <Button className={s.btn} variant="contained" component="label">
                         Upload
