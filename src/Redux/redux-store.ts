@@ -1,15 +1,10 @@
 import {applyMiddleware, combineReducers, legacy_createStore} from "redux"
 import thunkMiddleware from "redux-thunk"
-//@ts-ignore
 import profileReducer from "./reducer-profile.ts"
-//@ts-ignore
 import dialogsReducer from "./reducer-dialogs.ts"
-//@ts-ignore
-import usersReducer from "./reducer-users.ts";
-//@ts-ignore
-import authReducer from "./reducer-auth.ts";
-//@ts-ignore
-import appReducer from "./reducer-app.ts";
+import usersReducer from "./reducer-users.ts"
+import authReducer from "./reducer-auth.ts"
+import appReducer from "./reducer-app.ts"
 
 
 let reducers = combineReducers({

@@ -1,11 +1,11 @@
-import { profileAPI } from "../api/api";
-import { photosType, postType, profileType } from "../types/types";
+import { profileAPI } from "../api/api"
+import { photosType, postType, profileType } from "../types/types"
 
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_STATUS_USERS = "SET_STATUS_USERS";
-const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
+const ADD_POST = "ADD-POST"
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
+const SET_USER_PROFILE = "SET_USER_PROFILE"
+const SET_STATUS_USERS = "SET_STATUS_USERS"
+const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS"
 
 
 let initialState = {
