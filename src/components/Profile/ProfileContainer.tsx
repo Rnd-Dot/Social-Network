@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Profile from "./Profile";
+import Profile from "./Profile.tsx";
 import React from "react";
 import { profileUsersThunk, getStatus, updateStatus, savePhoto } from "../../Redux/reducer-profile.ts"
 import { useParams } from "react-router-dom";
@@ -17,9 +17,15 @@ const withRouter = WrappedComponent => props => {
     );
 }
 
+type Props = {
+    id: number
+    autorizedUserId: number
+    profileUsersThunk: (userId: number) => void
+    getStatus: (userId: number) => void
+    savePhoto: (photo: any) => void
+}
 
-
-class ProfileContainer extends React.Component {
+class ProfileContainer extends React.Component<Props> {
     refreshProfile() {
         let userId = this.props.id[0];
         if (!userId) {

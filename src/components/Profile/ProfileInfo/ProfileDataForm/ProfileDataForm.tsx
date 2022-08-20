@@ -1,9 +1,14 @@
-import { useForm } from 'react-hook-form';
-import { connect } from 'react-redux';
-import { saveProfile } from '../../../../Redux/reducer-profile.ts';
+import { useForm } from 'react-hook-form'
+import { connect } from 'react-redux'
+import { saveProfile } from '../../../../Redux/reducer-profile.ts'
+import React from 'react'
+import { contactType, profileType } from '../../../../types/types'
 
+type Props = {
+    saveProfile: (data: any) =>  profileType & contactType
+}
 
-const ProfileDataForm = (props) => {
+const ProfileDataForm = (props: Props) => {
     const {
         register,
         handleSubmit

@@ -1,13 +1,22 @@
 import Preloader from "../../common/Preloader/Preloader"
-import ProfileStatus from "./ProfileStatus/ProfileStatus"
 import userPhoto from "../../../assets/images/user.png"
 import React, { useState } from "react"
-import ProfileDataForm from './ProfileDataForm/ProfileDataForm';
+import ProfileDataForm from './ProfileDataForm/ProfileDataForm.tsx';
 import s from "./ProfileInfo.module.css"
 import { Button } from "@mui/material";
+import ProfileStatus from './ProfileStatus/ProfileStatus.tsx';
+import { profileType } from "../../../types/types";
 
 
-const ProfileInfo = (props) => {
+type Props = {
+    profile: profileType
+    isOwner: boolean
+    status: string
+    updateStatus: (NewStatus: string) => void
+    savePhoto: (photo: any) => void
+}
+
+const ProfileInfo = (props: Props) => {
     let [editMode, setEditMode] = useState(false)
 
     if (!props.profile) {

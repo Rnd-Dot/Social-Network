@@ -1,12 +1,21 @@
-import s from "./MyPosts.module.css";
-import Posts from "./Post/Posts.jsx";
-import React from 'react';
-import { Button } from "@mui/material";
-import  SendIcon  from '@mui/icons-material/Send';
+import s from "./MyPosts.module.css"
+import Posts from "./Post/Posts.tsx"
+import React from 'react'
+import { Button } from "@mui/material"
+import  SendIcon  from '@mui/icons-material/Send'
+import {ChangeEvent} from 'react'
+import { postType } from "../../../types/types"
 
 
 
-const MyPosts = (props) => {
+type Props = {
+    profilePage: any
+    posts: postType
+    addPost: () => void
+    updateNewPostText: (text: string | number) => string | number
+}
+
+const MyPosts = (props: Props) => {
     let postItem = [...props.profilePage.posts].reverse().map(p =>
         <Posts key={p.id} message={p.message} like_count={p.like_count} />
     );
@@ -16,7 +25,7 @@ const MyPosts = (props) => {
         props.addPost();
     }
 
-    let onPost = (e) => {
+    let onPost = (e: ChangeEvent<HTMLInputElement>) => {
         let text = e.target.value;
         props.updateNewPostText(text);
     };
