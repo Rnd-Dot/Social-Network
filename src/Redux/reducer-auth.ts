@@ -1,4 +1,5 @@
-import { loginAPI, securityAPI } from "../api/api"
+import { loginAPI, securityAPI } from "../api/api.ts"
+import {Dispatch} from 'redux';
 
 const SET_USERS_DATA = "SET_USERS_DATA"
 const SET_ERROR = "SET_ERROR"
@@ -26,7 +27,9 @@ let initialState = {
 
 export type InitialStateType = typeof initialState
 
-const authReducer = (state = initialState, action: any): InitialStateType => {
+type Actions = SetUserDataType | SetErrorType | GetCaptchaUrlSuccessType
+
+const authReducer = (state = initialState, action: Actions): InitialStateType => {
     switch (action.type) {
         case SET_USERS_DATA:
             return {
@@ -80,7 +83,7 @@ type GetCaptchaUrlSuccessType = {
 
 export const getCaptchaUrlSuccess = (captchaUrl: string): GetCaptchaUrlSuccessType => ({ type: GET_CAPTCHA_URL, captchaUrl });
 
-export const getAuthUserData = () => async (dispatch: any) => {
+export const getAuthUserData = () => async (dispatch: Dispatch<Actions>) => {
     let response = await loginAPI.me();
     if (response.data.resultCode === 0) {
         let { id, login, email } = response.data.data;
@@ -103,7 +106,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 }
 
 
-export const logout = () => async (dispatch: any) => {
+export const logout = () => async (dispatch: Dispatch<Actions>) => {
     let response = await loginAPI.logout();
     if (response.data.resultCode === 0) {
         dispatch(setUsersData(null, null, null, false, false))
@@ -111,7 +114,7 @@ export const logout = () => async (dispatch: any) => {
 }
 
 
-export const getCaptchaUrl = () => async (dispatch: any) => {
+export const getCaptchaUrl = () => async (dispatch: Dispatch<Actions>) => {
     const response = await securityAPI.getCaptchaUrl()
     const captchaUrl = response.data.url
     dispatch(getCaptchaUrlSuccess(captchaUrl))

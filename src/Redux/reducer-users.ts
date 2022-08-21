@@ -1,4 +1,5 @@
-import { usersAPI } from "../api/api"
+import { Dispatch } from "redux"
+import { usersAPI } from "../api/api.ts"
 import { UserType } from "../types/types"
 
 const FOLLOW = "FOLLOW"
@@ -19,7 +20,9 @@ let initialState = {
 
 type InitialState = typeof initialState
 
-const usersReducer = (state = initialState, action: any): InitialState => {
+type Actions = followType | unfollowType | setUsersType | setCurrentPageType | toggleIsFetchingType | toggleFollowingProgressType
+
+const usersReducer = (state = initialState, action: Actions): InitialState => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -129,7 +132,7 @@ export const getUsersThunkPage = (currentPage: number, pageSize: number) => asyn
             dispatch(toggleIsFetching(false))
     }
 
-export const followThunk = (id: number) => async (dispatch: any) => {
+export const followThunk = (id: number) => async (dispatch: Dispatch<Actions>) => {
         dispatch(toggleFollowingProgress(true, id))
         let response= await usersAPI.unfollow(id)
                 if (response.data.resultCode === 0) {
@@ -138,7 +141,7 @@ export const followThunk = (id: number) => async (dispatch: any) => {
                 dispatch(toggleFollowingProgress(false, id))
     }
 
-export const unfollowThunk = (id: number) => async (dispatch: any) => {
+export const unfollowThunk = (id: number) => async (dispatch: Dispatch<Actions>) => {
         dispatch(toggleFollowingProgress(true, id))
        let response = await usersAPI.follow(id)
                 if (response.data.resultCode === 0) {
